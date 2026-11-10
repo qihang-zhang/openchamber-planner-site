@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy · OpenChamber Planner</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1f2328; --muted: #59636e; --bg: #ffffff; --line: #d1d9e0; --link: #0969da; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #e6edf3; --muted: #9198a1; --bg: #0d1117; --line: #3d444d; --link: #4493f8; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem; }
+  h1 { font-size: 1.7rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.1rem; margin: 2rem 0 .5rem; }
+  p.lead { color: var(--muted); margin-top: 0; }
+  a { color: var(--link); }
+  table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+  th, td { text-align: left; vertical-align: top; padding: .45rem .5rem; border-bottom: 1px solid var(--line); }
+  code { font-size: .9em; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Privacy policy</h1>
+  <p class="lead">OpenChamber Planner · effective 10 November 2026</p>
+
+  <h2>In short</h2>
+  <p>The Planner runs on your own machine, as a service of your OpenChamber. It talks to Google's APIs directly from there.
+    Nothing you allow it to read is sent to the Planner's developers or to anyone else: there is no Planner server, no analytics,
+    no advertising, and nothing is sold.</p>
+
+  <h2>What it may access, and why</h2>
+  <p>Google asks you which features to allow when you sign in; the Planner asks only for the scopes of the features you choose.</p>
+  <table>
+    <tr><th>Feature</th><th>Google scopes</th><th>What the Planner does with them</th></tr>
+    <tr><td>Who you are</td><td><code>openid</code>, <code>email</code></td><td>Knows which Google account is connected, to show it and to keep several accounts apart.</td></tr>
+    <tr><td>Calendar</td><td><code>calendar.calendarlist.readonly</code>, <code>calendar.events</code></td><td>Shows your calendars beside the plan; writes, moves and removes the working sessions you schedule, and the events you create or change in the Planner.</td></tr>
+    <tr><td>Tasks</td><td><code>tasks</code></td><td>Shows and updates your Google Tasks lists and tasks as you change them in the Planner.</td></tr>
+    <tr><td>Gmail</td><td><code>gmail.readonly</code></td><td>Shows messages so you can turn one into a task, with its subject, sender and a link.</td></tr>
+    <tr><td>Gmail actions</td><td><code>gmail.modify</code></td><td>Only if you allow it: archives, trashes, marks read or unread, stars and labels a message you act on from its task. It never deletes permanently.</td></tr>
+    <tr><td>Drive</td><td><code>drive.metadata.readonly</code></td><td>Finds files by name, to attach a link to a task. It never reads file contents.</td></tr>
+    <tr><td>Contacts</td><td><code>contacts.readonly</code>, <code>contacts.other.readonly</code></td><td>Suggests people to invite to an event.</td></tr>
+  </table>
+
+  <h2>Where your data stays</h2>
+  <ul>
+    <li>The access Google grants (its refresh token) is stored on your machine, in a file only your user account can read, outside the
+      plan's synced data. It is never shown to the Planner's own web page.</li>
+    <li>What the Planner reads from Google is used to draw your plan and is kept on your machine; it is not sent elsewhere.</li>
+    <li>The Planner's use and transfer of information received from Google APIs adheres to the
+      <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+      including the Limited Use requirements.</li>
+  </ul>
+
+  <h2>Removing access</h2>
+  <p>In the Planner, Settings → Google → Remove disconnects an account and revokes its access at Google. You can also revoke it at
+    <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Removing the Planner's files from your
+    machine removes everything it kept.</p>
+
+  <h2>Contact</h2>
+  <p><a href="mailto:antropy.agent@gmail.com">antropy.agent@gmail.com</a> · source code:
+    <a href="https://github.com/antropy-research/openchamber-planner">antropy-research/openchamber-planner</a></p>
+
+  <footer><a href="index.html">OpenChamber Planner</a></footer>
+</main>
+</body>
+</html>

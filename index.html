@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenChamber Planner</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1f2328; --muted: #59636e; --bg: #ffffff; --line: #d1d9e0; --link: #0969da; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #e6edf3; --muted: #9198a1; --bg: #0d1117; --line: #3d444d; --link: #4493f8; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 44rem; margin: 0 auto; padding: 3rem 1.25rem; }
+  h1 { font-size: 1.9rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
+  p.lead { color: var(--muted); margin-top: 0; }
+  a { color: var(--link); }
+  ul { padding-left: 1.2rem; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>OpenChamber Planner</h1>
+  <p class="lead">A daily planner inside OpenChamber: plan the day, time-box it on your
+    calendar, and keep Linear, GitHub, Google Calendar, Google Tasks and Gmail in one place.</p>
+
+  <h2>What it does</h2>
+  <ul>
+    <li>Plans days and weeks in the style of Sunsama: tasks, planned and actual time, channels, rituals.</li>
+    <li>Shows your Google calendars beside the plan and writes the working sessions you schedule to the calendar you choose.</li>
+    <li>Reads and updates Google Tasks, shows Gmail messages you can turn into tasks, and finds Drive files to attach by name.</li>
+    <li>Manages Linear and GitHub issues where they are, and can hand a task to an OpenCode agent.</li>
+  </ul>
+
+  <h2>Signing in with Google</h2>
+  <p>The Planner runs on your own machine, as a service of your OpenChamber. When you choose <em>Sign in with Google</em>, Google asks
+    you which features to allow (Calendar, Tasks, Gmail, Drive, Contacts). The Planner then talks to Google's APIs directly from your
+    machine; the access it receives stays there, in a file only your user account can read. See the
+    <a href="privacy.html">privacy policy</a> for exactly what is read, what is written, and why.</p>
+
+  <h2>Source</h2>
+  <p>The Planner is open source: <a href="https://github.com/antropy-research/openchamber-planner">antropy-research/openchamber-planner</a>.</p>
+
+  <footer>
+    <a href="privacy.html">Privacy policy</a> · Contact: <a href="mailto:antropy.agent@gmail.com">antropy.agent@gmail.com</a>
+  </footer>
+</main>
+</body>
+</html>
