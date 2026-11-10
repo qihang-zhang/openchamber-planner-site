@@ -16,6 +16,7 @@
   table { border-collapse: collapse; width: 100%; font-size: .95rem; }
   th, td { text-align: left; vertical-align: top; padding: .45rem .5rem; border-bottom: 1px solid var(--line); }
   code { font-size: .9em; }
+  li { margin-bottom: .35rem; }
   footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
 </style>
 </head>
@@ -25,37 +26,89 @@
   <p class="lead">OpenChamber Planner · effective 10 November 2026</p>
 
   <h2>In short</h2>
-  <p>The Planner runs on your own machine, as a service of your OpenChamber. It talks to Google's APIs directly from there.
-    Nothing you allow it to read is sent to the Planner's developers or to anyone else: there is no Planner server, no analytics,
-    no advertising, and nothing is sold.</p>
+  <p>The Planner runs on your own machine, as a service of your OpenChamber, and talks to Google's APIs directly from there.
+    Its developers run no Planner server and receive nothing you allow it to read: no copies of your data, no analytics,
+    no advertising, and nothing is sold. Google data leaves that machine only for the places listed under
+    <a href="#where-it-goes">Where your data can go</a>, and only when you set them up or start them yourself.</p>
+
+  <h2>Signing in</h2>
+  <p>You sign in on Google's own page, so the Planner never sees your Google password. Google shows the access the Planner
+    asks for, and you can allow or refuse each part. The Planner asks only for the scopes of the features you choose, and
+    asks for Drive and for Gmail actions only when you first use them.</p>
 
   <h2>What it may access, and why</h2>
-  <p>Google asks you which features to allow when you sign in; the Planner asks only for the scopes of the features you choose.</p>
   <table>
     <tr><th>Feature</th><th>Google scopes</th><th>What the Planner does with them</th></tr>
     <tr><td>Who you are</td><td><code>openid</code>, <code>email</code></td><td>Knows which Google account is connected, to show it and to keep several accounts apart.</td></tr>
-    <tr><td>Calendar</td><td><code>calendar.calendarlist.readonly</code>, <code>calendar.events</code></td><td>Shows your calendars beside the plan; writes, moves and removes the working sessions you schedule, and the events you create or change in the Planner.</td></tr>
-    <tr><td>Tasks</td><td><code>tasks</code></td><td>Shows and updates your Google Tasks lists and tasks as you change them in the Planner.</td></tr>
-    <tr><td>Gmail</td><td><code>gmail.readonly</code></td><td>Shows messages so you can turn one into a task, with its subject, sender and a link.</td></tr>
-    <tr><td>Gmail actions</td><td><code>gmail.modify</code></td><td>Only if you allow it: archives, trashes, marks read or unread, stars and labels a message you act on from its task. It never deletes permanently.</td></tr>
-    <tr><td>Drive</td><td><code>drive.metadata.readonly</code></td><td>Finds files by name, to attach a link to a task. It never reads file contents.</td></tr>
-    <tr><td>Contacts</td><td><code>contacts.readonly</code>, <code>contacts.other.readonly</code></td><td>Suggests people to invite to an event.</td></tr>
+    <tr><td>Calendar</td><td><code>calendar.calendarlist.readonly</code>, <code>calendar.events</code></td><td>Shows your calendars and their events beside the plan. Creates, moves and removes the working sessions you schedule, and the events you create or change in the Planner; when an event has guests, Google sends them its invitations and updates, as Google Calendar does. If you turn on automatic declining for a task you have marked Busy, the Planner answers the invitations that overlap that task "Declined" with your message, which Google sends to the organizer.</td></tr>
+    <tr><td>Tasks</td><td><code>tasks</code></td><td>Shows your Google Tasks lists and tasks, and creates, updates, completes and moves them as you change them in the Planner.</td></tr>
+    <tr><td>Gmail</td><td><code>gmail.readonly</code></td><td>Lists and searches your messages (subject, sender, date and Gmail's short snippet) so you can turn one into a task, and shows a message's conversation when you open its task. It never sends email.</td></tr>
+    <tr><td>Gmail actions</td><td><code>gmail.modify</code></td><td>Only if you allow it: archives, moves to the trash, marks read or unread, stars and labels a message, when you act on its task or through an automation you turn on (for example, archive the email when its task is completed). It never deletes a message permanently and never sends email.</td></tr>
+    <tr><td>Drive</td><td><code>drive.metadata.readonly</code></td><td>Finds files by name (their names, types, links and modification times) to attach a link to a task. It never reads file contents.</td></tr>
+    <tr><td>Contacts</td><td><code>contacts.readonly</code>, <code>contacts.other.readonly</code></td><td>Suggests people to invite to an event as you type a name. It changes nothing in your contacts.</td></tr>
   </table>
 
-  <h2>Where your data stays</h2>
+  <h2>What it keeps, and where</h2>
   <ul>
-    <li>The access Google grants (its refresh token) is stored on your machine, in a file only your user account can read, outside the
-      plan's synced data. It is never shown to the Planner's own web page.</li>
-    <li>What the Planner reads from Google is used to draw your plan and is kept on your machine; it is not sent elsewhere.</li>
-    <li>The Planner's use and transfer of information received from Google APIs adheres to the
-      <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
-      including the Limited Use requirements.</li>
+    <li><strong>Your Google access.</strong> The refresh token Google grants is stored on the machine that runs the Planner, in a
+      file only your user account can read, outside the plan's data. It is never sent to the Planner's web page or to anyone else.</li>
+    <li><strong>What it shows.</strong> Messages, events, tasks, files and contacts are read from Google when the Planner needs them,
+      held briefly in the service's memory to keep the panel fast, and not written to disk.</li>
+    <li><strong>What you turn into a task.</strong> The task keeps what it needs in your plan: its title (for example, an email's
+      subject), its notes (for example, the sender and Gmail's snippet, which you can edit) and a link back to the item in Google.
+      The plan is a set of files in a git repository on the machine that runs the Planner.</li>
+    <li><strong>Bookkeeping.</strong> Small files beside the plan, outside its synced data and readable only by your user account,
+      record for example which invitations it declined for you (kept for a month) and which reminders it has shown.</li>
   </ul>
 
-  <h2>Removing access</h2>
-  <p>In the Planner, Settings → Google → Remove disconnects an account and revokes its access at Google. You can also revoke it at
-    <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Removing the Planner's files from your
-    machine removes everything it kept.</p>
+  <h2 id="where-it-goes">Where your data can go</h2>
+  <ol>
+    <li><strong>To your browser.</strong> The Planner's panel is part of OpenChamber's web page. What it shows goes from the service to
+      the browser you open OpenChamber in, which may be on another device when you reach your OpenChamber over a network. Use HTTPS
+      or a private network for that connection.</li>
+    <li><strong>To a sync remote you choose</strong> (off unless you set one). With Settings → Sync, the plan, including the titles,
+      notes and links of tasks made from Google items, is pushed to the git remote you name, so your other machines can share it.
+      Your Google tokens are never part of it.</li>
+    <li><strong>To an AI agent, only when you start one.</strong> When you hand a task to an OpenCode agent, or use Ask Planner,
+      Braindump or the Daily highlights summary, the Planner puts the text of the tasks involved (which can include an email's
+      subject, sender and snippet) in an OpenCode chat. OpenCode sends that chat to the AI model provider you configured in
+      OpenCode, under your own agreement with that provider. The Planner never starts this by itself, never gives an agent your
+      Google access, and never uses Google data to train AI models.</li>
+    <li><strong>To Google.</strong> The Planner sends Google only the requests that the features above need.</li>
+  </ol>
+  <p>Nothing else: no Google data goes to the Planner's developers or to any other party, and the developers never see it.</p>
+
+  <h2>Limited Use</h2>
+  <p>The Planner's use and transfer of information received from Google APIs adheres to the
+    <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+    including the <a href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes">Limited Use requirements</a>,
+    and to the <a href="https://developers.google.com/workspace/workspace-api-user-data-developer-policy">Google Workspace API User Data and Developer Policy</a>.
+    Google data is used only for the features described above. It is not sold, not used for advertising, not used to determine
+    credit-worthiness, and not used to train AI models.</p>
+
+  <h2>Security</h2>
+  <ul>
+    <li>Every request to Google uses HTTPS.</li>
+    <li>Your tokens and the bookkeeping files are readable only by your user account on the machine that runs the Planner.</li>
+    <li>The Planner's web page never receives your Google tokens; the service makes every request to Google itself.</li>
+  </ul>
+
+  <h2>Removing access and deleting data</h2>
+  <ul>
+    <li>In the Planner, Settings → Google → Remove disconnects an account, revokes its access at Google and deletes its token from
+      your machine. You can also revoke the access at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+    <li>Tasks you made from Google items stay in your plan until you delete them. The plan keeps a history of its changes, so a
+      deleted task's earlier text stays in that history (and in your sync remote, if you set one) until you delete the Planner's
+      data folder, <code>~/.local/share/openchamber-planner/</code>, and the remote.</li>
+    <li>To remove everything, remove your Google accounts in the Planner, then delete that folder.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>The Planner is not directed to children under 13.</p>
+
+  <h2>Changes</h2>
+  <p>A new version of this policy is posted here with a new effective date. If the Planner starts using Google data in a way not
+    described here, it asks for your agreement first.</p>
 
   <h2>Contact</h2>
   <p><a href="mailto:antropy.agent@gmail.com">antropy.agent@gmail.com</a> · source code:
